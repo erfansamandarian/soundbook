@@ -15,7 +15,7 @@ def make_folder(directory):
         os.makedirs(dir_path)
 
 
-def extractAudio(url, directory):
+def extract_audio(url, directory):
     result = subprocess.run(
         [
             "yt-dlp",
@@ -33,25 +33,22 @@ def extractAudio(url, directory):
     return directory
 
 
-def mergeAudio(directory):
+def merge_audio(directory):
     os.chdir(f"downloads/{directory}")
-    mp3_files = glob.glob("*.mp3")
-    print(f"Current directory: {os.getcwd()}")
-    print(f"MP3 files: {mp3_files}")
     output_file = f"{directory}.mp3"
     output_file_m4b = f"{directory}.m4b"
-    if output_file in mp3_files:
-        mp3_files.remove(output_file)
-    if mp3_files:
-        subprocess.run(["sox"] + mp3_files + [output_file], check=True)
-        for file in mp3_files:
-            os.remove(file)
-        subprocess.run(["ffmpeg", "-i", output_file, output_file_m4b], check=True)
-        os.remove(output_file)
+    subprocess.run(["sox", "*.mp3", output_file], check=True)
+    subprocess.run(
+        ["ffmpeg", "-i", output_file, "-c:v", "h264_videotoolbox", output_file_m4b],
+        check=True,
+    )  # todo: detect hardware and change accordingly
+    mp3_files = [f for f in os.listdir() if f.endswith(".mp3")]
+    for mp3_file in mp3_files:
+        os.remove(mp3_file)
     os.chdir("../..")
 
 
-def getTitle(url):
+def get_title(url):
     return url.split("/")[-2] if url.endswith("/") else url.split("/")[-1]
 
 
@@ -89,9 +86,9 @@ def add_cover_image(directory, title):
 
 
 def get_url(url):
-    directory = getTitle(url)
+    directory = get_title(url)
     make_folder(directory)
-    title = extractAudio(url, directory)
+    title = extract_audio(url, directory)
     get_cover_image(directory)
-    mergeAudio(directory)
+    merge_audio(directory)
     add_cover_image(directory, title)
