@@ -15,7 +15,7 @@ setup(
     license="MIT",
     version="0.0.1",
     packages=find_packages(),
-    install_requires=["requests", "sox", "yt_dlp"],
+    install_requires=["setuptools", "ffmpeg", "mutagen", "eyed3", "pillow", "requests", "sox", "yt_dlp"],
     py_modules=["soundbook"],
     entry_points={"console_scripts": ["soundbook=soundbook:main"]},
 )
