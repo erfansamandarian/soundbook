@@ -13,7 +13,7 @@ setup(
     author_email="mail@erfansamandarian.com",
     url="https://erfansamandarian.com/soundbook",
     license="MIT",
-    version="0.0.1",
+    version="0.0.2",
     packages=find_packages(),
     install_requires=["setuptools", "ffmpeg", "mutagen", "eyed3", "pillow", "requests", "sox", "yt_dlp"],
     py_modules=["soundbook"],
