@@ -12,9 +12,7 @@ class Runner:
         return f"{self.config}"
 
     def run(self):
-        if self.config.book is not None:
-            get_book(self.config.book)
-        elif self.config.url is not None:
-            get_url(self.config.url)
+        if self.config.url is not None:
+            get_url(self.config.url, self.config.title, self.config.author)
         else:
             print("No valid input")

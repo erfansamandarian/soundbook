@@ -16,6 +16,14 @@ def arguments():
         "--url",
         help="The URL of the audiobook you want to download",
     )
+    parser.add_argument(
+        "--title",
+        help="The title of the audiobook you want to download",
+    )
+    parser.add_argument(
+        "--author",
+        help="The author of the audiobook you want to download",
+    )
     args = parser.parse_args()
     return Config(args)
 

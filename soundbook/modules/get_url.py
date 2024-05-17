@@ -68,7 +68,7 @@ def get_cover_image(directory):
             im.save(cover_image_path)
 
 
-def add_cover_image(directory, title):
+def add_cover_image(directory, title, book_title, book_author):
     title = title + ".m4b"
     dir_path = f"downloads/{directory}"
     full_path_to_file = os.path.join(dir_path, title)
@@ -79,16 +79,20 @@ def add_cover_image(directory, title):
             audio = MP4(full_path_to_file)
             cover_image = open(cover_img, "rb").read()
             audio["covr"] = [MP4Cover(cover_image)]
+            if book_title is not None:
+                audio["\xa9nam"] = [book_title]
+            if book_author is not None:
+                audio["\xa9ART"] = [book_author]
             audio.save()
             os.remove(cover_img)
         else:
             print(f"Cover image {cover_img} not found")
 
 
-def get_url(url):
+def get_url(url, book_title, book_author):
     directory = get_title(url)
     make_folder(directory)
     title = extract_audio(url, directory)
     get_cover_image(directory)
     merge_audio(directory)
-    add_cover_image(directory, title)
+    add_cover_image(directory, title, book_title, book_author)
