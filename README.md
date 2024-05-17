@@ -46,6 +46,12 @@ pip install soundbook --break-system-packages
 soundbook --url "https://<website>.com/<book>/"
 ```
 
+### by url 
+
+```
+soundbook --url "https://<website>.com/<book>/" --title "book title" --author "book author"
+```
+
 ### example
 
 ```
