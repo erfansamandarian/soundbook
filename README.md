@@ -64,7 +64,7 @@ do not pirate, pirating is bad, paying money for dead people's ip is good, belie
 
 <b>coming soon</b>
 
-requests.json() not working for these shitty websites
+requests.json() not working for these websites
 
 i get 403 when i try to connect, even with the correct headers
 
