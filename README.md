@@ -2,7 +2,7 @@
 
 like soundcloud but
 
-download, merge and add cover images to audiobooks
+easily download, merge and add cover images to split online audiobooks
 
 ## about
 
@@ -11,6 +11,16 @@ downloading audiobooks online is a pain, this tool takes away that pain
 less pain is good...
 
 ## installation 
+
+## note ❗️
+
+sox is required
+
+if you have brew, just do
+
+```
+brew install sox
+```
 
 ### venv
 
